@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
+        <!--About-->
         <scene sceneID="CCS-h4-DiQ">
             <objects>
                 <viewController id="ZGa-Lz-epy" sceneMemberID="viewController">
@@ -18,7 +18,7 @@
                         <viewLayoutGuide key="safeArea" id="QBb-9w-MLE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="PCk-x3-JmR"/>
+                    <tabBarItem key="tabBarItem" title="About" image="info.circle.fill" catalog="system" id="PCk-x3-JmR"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LJL-qd-hpd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -34,8 +34,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="ZGa-Lz-epy" kind="relationship" relationship="viewControllers" id="2mw-E9-edz"/>
                         <segue destination="oC1-9A-5qq" kind="relationship" relationship="viewControllers" id="pOu-j3-qnZ"/>
+                        <segue destination="ZGa-Lz-epy" kind="relationship" relationship="viewControllers" id="2mw-E9-edz"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="unp-Cc-hnb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -181,6 +181,7 @@
     </scenes>
     <resources>
         <image name="NoBookCover" width="60" height="86"/>
+        <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
