@@ -17,7 +17,8 @@
 		452B4C9E2614977000FCC91A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452B4C9D2614977000FCC91A /* SearchViewController.swift */; };
 		452B4CA32614A19800FCC91A /* SubjectsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452B4CA22614A19800FCC91A /* SubjectsTable.swift */; };
 		452B4CA82614A58400FCC91A /* SubjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452B4CA72614A58400FCC91A /* SubjectCell.swift */; };
-		452B4CB02614EB0200FCC91A /* BooksTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452B4CAF2614EB0200FCC91A /* BooksTable.swift */; };
+		452B4CC22614FFCA00FCC91A /* BooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452B4CC12614FFCA00FCC91A /* BooksViewController.swift */; };
+		452B4CC72615003100FCC91A /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452B4CC62615003100FCC91A /* BookCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +56,8 @@
 		452B4C9D2614977000FCC91A /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		452B4CA22614A19800FCC91A /* SubjectsTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectsTable.swift; sourceTree = "<group>"; };
 		452B4CA72614A58400FCC91A /* SubjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectCell.swift; sourceTree = "<group>"; };
-		452B4CAF2614EB0200FCC91A /* BooksTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksTable.swift; sourceTree = "<group>"; };
+		452B4CC12614FFCA00FCC91A /* BooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksViewController.swift; sourceTree = "<group>"; };
+		452B4CC62615003100FCC91A /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +118,8 @@
 				452B4C9D2614977000FCC91A /* SearchViewController.swift */,
 				452B4CA22614A19800FCC91A /* SubjectsTable.swift */,
 				452B4CA72614A58400FCC91A /* SubjectCell.swift */,
-				452B4CAF2614EB0200FCC91A /* BooksTable.swift */,
+				452B4CC12614FFCA00FCC91A /* BooksViewController.swift */,
+				452B4CC62615003100FCC91A /* BookCell.swift */,
 			);
 			path = TiktekSwift;
 			sourceTree = "<group>";
@@ -272,9 +275,10 @@
 				452B4CA82614A58400FCC91A /* SubjectCell.swift in Sources */,
 				452B4CA32614A19800FCC91A /* SubjectsTable.swift in Sources */,
 				452B4C67261495E300FCC91A /* AppDelegate.swift in Sources */,
+				452B4CC72615003100FCC91A /* BookCell.swift in Sources */,
 				452B4C9E2614977000FCC91A /* SearchViewController.swift in Sources */,
 				452B4C69261495E300FCC91A /* SceneDelegate.swift in Sources */,
-				452B4CB02614EB0200FCC91A /* BooksTable.swift in Sources */,
+				452B4CC22614FFCA00FCC91A /* BooksViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
