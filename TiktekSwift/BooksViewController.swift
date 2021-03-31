@@ -22,9 +22,7 @@ class BooksViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.isHidden = true
-        loadingIndicator.hidesWhenStopped = true
         view.addSubview(loadingIndicator)
-        loadingIndicator.startAnimating()
         DispatchQueue.global(qos: .userInitiated).async {
             sleep(5)
             DispatchQueue.main.async { [self] in
