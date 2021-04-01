@@ -19,6 +19,7 @@
 		452B4CA82614A58400FCC91A /* SubjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452B4CA72614A58400FCC91A /* SubjectCell.swift */; };
 		452B4CC22614FFCA00FCC91A /* BooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452B4CC12614FFCA00FCC91A /* BooksViewController.swift */; };
 		452B4CC72615003100FCC91A /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452B4CC62615003100FCC91A /* BookCell.swift */; };
+		45C61E6D2615C7400024F654 /* TiktekAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C61E6C2615C7400024F654 /* TiktekAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		452B4CA72614A58400FCC91A /* SubjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectCell.swift; sourceTree = "<group>"; };
 		452B4CC12614FFCA00FCC91A /* BooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BooksViewController.swift; sourceTree = "<group>"; };
 		452B4CC62615003100FCC91A /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
+		45C61E6C2615C7400024F654 /* TiktekAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiktekAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				452B4CA72614A58400FCC91A /* SubjectCell.swift */,
 				452B4CC12614FFCA00FCC91A /* BooksViewController.swift */,
 				452B4CC62615003100FCC91A /* BookCell.swift */,
+				45C61E6C2615C7400024F654 /* TiktekAPI.swift */,
 			);
 			path = TiktekSwift;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45C61E6D2615C7400024F654 /* TiktekAPI.swift in Sources */,
 				452B4CA82614A58400FCC91A /* SubjectCell.swift in Sources */,
 				452B4CA32614A19800FCC91A /* SubjectsTable.swift in Sources */,
 				452B4C67261495E300FCC91A /* AppDelegate.swift in Sources */,

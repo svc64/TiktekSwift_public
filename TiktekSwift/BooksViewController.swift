@@ -24,12 +24,13 @@ class BooksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.isHidden = true
         view.addSubview(loadingIndicator)
         DispatchQueue.global(qos: .userInitiated).async {
-            sleep(1)
+            let api = TiktekAPI()
             DispatchQueue.main.async { [self] in
                 loadingIndicator.stopAnimating()
                 tableView.isHidden = false
                 tableView.delegate = self
                 tableView.dataSource = self
+                tableView.reloadData()
             }
         }
     }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ank-4D-O8U">
-    <device id="retina6_7" orientation="portrait" appearance="light"/>
+    <device id="mac" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,7 +13,7 @@
             <objects>
                 <viewController id="ZGa-Lz-epy" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mM8-qJ-IV8">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="QBb-9w-MLE"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -47,19 +47,19 @@
             <objects>
                 <tableViewController id="SVi-rP-nfg" customClass="SubjectsTable" customModule="TiktekSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="tuu-3f-ugL">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SubjectCell" id="BPS-ws-HSf" customClass="SubjectCell" customModule="TiktekSwift" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="428" height="42.666667938232422"/>
+                                <rect key="frame" x="0.0" y="28.5" width="800" height="42.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BPS-ws-HSf" id="eLQ-Ff-82N">
-                                    <rect key="frame" x="0.0" y="0.0" width="428" height="42.666667938232422"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="800" height="42.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="640K ought to be enough for anybody." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAa-qC-8q8">
-                                            <rect key="frame" x="20" y="11.000000000000002" width="388" height="20.666666666666671"/>
+                                            <rect key="frame" x="20" y="11" width="760" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -94,28 +94,28 @@
             <objects>
                 <viewController id="VNd-61-V7U" customClass="BooksViewController" customModule="TiktekSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XYL-FS-y8I">
-                        <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ww7-r0-2Xk">
-                                <rect key="frame" x="0.0" y="88" width="428" height="755"/>
+                                <rect key="frame" x="0.0" y="50" width="800" height="500"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookCell" rowHeight="118" id="qoZ-T7-ier" customClass="BookCell" customModule="TiktekSwift" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="428" height="118"/>
+                                        <rect key="frame" x="0.0" y="28.5" width="800" height="118"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qoZ-T7-ier" id="dhy-qQ-VXC">
-                                            <rect key="frame" x="0.0" y="0.0" width="428" height="118"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="800" height="118"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoBookCover" translatesAutoresizingMaskIntoConstraints="NO" id="5EI-wH-GcU">
-                                                    <rect key="frame" x="20" y="11" width="60" height="96"/>
+                                                    <rect key="frame" x="16" y="11" width="60" height="96"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="MJU-7R-vQL"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Egc-95-7sy">
-                                                    <rect key="frame" x="88" y="11" width="320" height="20"/>
+                                                    <rect key="frame" x="84" y="11" width="700" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="nH7-PK-qJU"/>
                                                     </constraints>
@@ -124,10 +124,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Book Info" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VEo-nq-6HY">
-                                                    <rect key="frame" x="88" y="39" width="320" height="68"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="68" id="7Fi-zo-v7W"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="84" y="39" width="700" height="68"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -153,7 +150,7 @@
                                 </prototypes>
                             </tableView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="Ias-Kt-Kdp">
-                                <rect key="frame" x="0.0" y="88" width="428" height="755"/>
+                                <rect key="frame" x="0.0" y="50" width="800" height="500"/>
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Rs5-bv-P0K"/>
@@ -185,7 +182,7 @@
                 <navigationController id="oC1-9A-5qq" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="GTy-K8-Q8c"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aXi-fg-lpf">
-                        <rect key="frame" x="0.0" y="44" width="428" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
