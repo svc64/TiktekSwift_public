@@ -24,7 +24,7 @@ class BooksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.isHidden = true
         view.addSubview(loadingIndicator)
         DispatchQueue.global(qos: .userInitiated).async {
-            sleep(5)
+            sleep(1)
             DispatchQueue.main.async { [self] in
                 loadingIndicator.stopAnimating()
                 tableView.isHidden = false

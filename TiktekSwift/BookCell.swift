@@ -8,6 +8,7 @@
 import UIKit
 
 class BookCell: UITableViewCell {
+    @IBOutlet weak var BookCover: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
