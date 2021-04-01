@@ -12,28 +12,17 @@ class TiktekAPI {
     let PARAM_CLIENT_ID = "TT-Client_ID"
     let host = "https://tiktek.com"
     let clientIDRequest = "/il/services/Clients.asmx/GetClientID2"
+    let modelCode = "iPhone12,1"
+    let systemVersionString = "14.4.0"
+    
     var clientID = "iOS_NoClientID"
     var userAgent: String // a legit looking user agent
     var deviceInfo: String // cuz we need this
     init() {
         /* The tiktek app fetches a unique device ID on first launch, then it sends that device ID in all requests.
             This can be abused to track users (and probably used for this) so we'll fetch a new device ID every launch to look legit and prevent tracking.
-            So, we first need to make our fake user agent, a real one looks like this:
-            "Tiktek for iOS v200 on iPhone12,1 - ios 14.5.0"
          */
-        var systemInfo = utsname()
-        uname(&systemInfo)
-        let modelCode = withUnsafePointer(to: &systemInfo.machine) {
-            $0.withMemoryRebound(to: CChar.self, capacity: 1) {
-                ptr in String.init(validatingUTF8: ptr)
-            }
-        }
-        var systemVersionString = UIDevice.current.systemVersion
-        if systemVersionString.components(separatedBy: ".").count == 2 {
-            // replicate the retarded behavior of adding a .0 to the version
-            systemVersionString += ".0"
-        }
-        deviceInfo = "\(modelCode!) - ios \(systemVersionString)"
+        deviceInfo = "\(modelCode) - ios \(systemVersionString)"
         userAgent = "Tiktek for iOS v200 on \(deviceInfo)"
         let idRequest: [String: String] = ["deviceInfo" : deviceInfo]
         let idResponse = jsonPost(url: host+clientIDRequest, jsonBody: idRequest)
