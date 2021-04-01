@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BooksViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class BooksViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     var subjectID: String?
     var books: [Book]?
     @IBOutlet weak var tableView: UITableView!
@@ -42,5 +42,40 @@ class BooksViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 tableView.reloadData()
             }
         }
+    }
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        var result = true
+        let alert = UIAlertController(title: (sender as! BookCell).BookName.text, message: "", preferredStyle: .alert)
+        alert.addTextField() { (pageNumberField) in
+            pageNumberField.placeholder = "Page number"
+            pageNumberField.keyboardType = .numberPad
+            pageNumberField.delegate = self
+        }
+        alert.addTextField { (questionNumberField) in
+            questionNumberField.placeholder = "Question number"
+            questionNumberField.keyboardType = .numberPad
+            questionNumberField.delegate = self
+        }
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+            let pageNumberField = alert?.textFields![0]
+            let questionNumberField = alert?.textFields![1]
+            if pageNumberField?.text == nil {
+                result = false
+                return
+            }
+            print("Page number: \(pageNumberField!.text!)")
+            print("Question number: \(questionNumberField!.text!)")
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (_) in
+            result = false
+        }))
+        self.present(alert, animated: true, completion: nil)
+        return result
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string)) {
+            return true
+        }
+        return false
     }
 }
