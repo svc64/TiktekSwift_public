@@ -8,10 +8,16 @@
 import UIKit
 // this is torture
 // anyways, here's the tiktek API in swift
+struct Book {
+    let image: UIImage
+    let name: String
+    let info: String
+}
 class TiktekAPI {
     let PARAM_CLIENT_ID = "TT-Client_ID"
     let host = "https://tiktek.com"
     let clientIDRequest = "/il/services/Clients.asmx/GetClientID2"
+    let bookListRequest = "/il/services/MobileSearch.asmx/GetMobileBooks2"
     let modelCode = "iPhone12,1"
     let systemVersionString = "14.4.0"
     
@@ -28,6 +34,26 @@ class TiktekAPI {
         let idResponse = jsonPost(url: host+clientIDRequest, jsonBody: idRequest)
         clientID = idResponse!["ResultData"] as! String
         print("Got client ID! \(clientID)")
+    }
+    func getBooks(subjectID: String) -> [Book]? {
+        var books: [Book] = []
+        let booksRequest: [String: String] = ["subjectID" : subjectID]
+        let booksResponse = jsonPost(url: host+bookListRequest, jsonBody: booksRequest)
+        if let resultData = booksResponse!["ResultData"] as? [String: Any]? {
+            if let booksArray = resultData!["Books"] as! [[String: Any]]? {
+                // every single tiktek employee who took part in designing this mess deserves to get shot
+                // for legal reasons the above text is just a joke
+                for book in booksArray {
+                    let image = UIImage(data: Data(base64Encoded: book["Icon"] as! String)!)!
+                    let name = book["Title"] as! String
+                    let info = (book["Title1"] as! String) + "\n" + (book["Title2"] as! String) + "\n" + (book["Title3"] as! String)
+                    let parsedBook = Book(image: image, name: name, info: info)
+                    books.append(parsedBook)
+                }
+                return books
+            }
+        }
+        return nil
     }
     // [String: [String: Any]?]?
     private func jsonPost(url: String, jsonBody: [String: Any]) -> [String: Any]? {

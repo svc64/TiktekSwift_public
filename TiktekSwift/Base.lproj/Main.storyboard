@@ -145,6 +145,8 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="BookCover" destination="5EI-wH-GcU" id="jbN-AJ-mlf"/>
+                                            <outlet property="BookInfo" destination="VEo-nq-6HY" id="6Oy-6j-TZ3"/>
+                                            <outlet property="BookName" destination="Egc-95-7sy" id="b2X-SF-nZn"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

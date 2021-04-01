@@ -31,6 +31,7 @@ class SubjectsTable: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let indexPath = tableView.indexPath(for: sender as! UITableViewCell)!
         tableView.deselectRow(at: indexPath, animated: true)
-        //segue.destination.title = subjects[indexPath.row].name
+        let dest = segue.destination as! BooksViewController
+        dest.subjectID = subjects[indexPath.row].ID
     }
 }
