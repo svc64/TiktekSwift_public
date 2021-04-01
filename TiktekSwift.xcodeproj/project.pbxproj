@@ -21,6 +21,7 @@
 		452B4CC72615003100FCC91A /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452B4CC62615003100FCC91A /* BookCell.swift */; };
 		45C61E6D2615C7400024F654 /* TiktekAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C61E6C2615C7400024F654 /* TiktekAPI.swift */; };
 		45C61E722615E4690024F654 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C61E712615E4690024F654 /* Globals.swift */; };
+		45C61E8726164B500024F654 /* AnswersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45C61E8626164B500024F654 /* AnswersViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		452B4CC62615003100FCC91A /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
 		45C61E6C2615C7400024F654 /* TiktekAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiktekAPI.swift; sourceTree = "<group>"; };
 		45C61E712615E4690024F654 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		45C61E8626164B500024F654 /* AnswersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswersViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 				452B4CC62615003100FCC91A /* BookCell.swift */,
 				45C61E6C2615C7400024F654 /* TiktekAPI.swift */,
 				45C61E712615E4690024F654 /* Globals.swift */,
+				45C61E8626164B500024F654 /* AnswersViewController.swift */,
 			);
 			path = TiktekSwift;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				452B4CA82614A58400FCC91A /* SubjectCell.swift in Sources */,
 				452B4CA32614A19800FCC91A /* SubjectsTable.swift in Sources */,
 				452B4C67261495E300FCC91A /* AppDelegate.swift in Sources */,
+				45C61E8726164B500024F654 /* AnswersViewController.swift in Sources */,
 				452B4CC72615003100FCC91A /* BookCell.swift in Sources */,
 				452B4C9E2614977000FCC91A /* SearchViewController.swift in Sources */,
 				452B4C69261495E300FCC91A /* SceneDelegate.swift in Sources */,
