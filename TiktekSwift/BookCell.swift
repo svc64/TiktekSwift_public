@@ -12,4 +12,5 @@ class BookCell: UITableViewCell {
     @IBOutlet weak var BookName: UILabel!
     @IBOutlet weak var BookInfo: UILabel!
     var bookID: String?
+    var bookStruct: Book?
 }

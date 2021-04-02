@@ -13,6 +13,7 @@ struct Book {
     let name: String
     let info: String
     let ID: String
+    let imagesDirectory: String // the directory in tiktek's servers where the solution images are saved for this book
 }
 struct Answer {
     let imageName: String
@@ -52,7 +53,7 @@ class TiktekAPI {
                     let image = UIImage(data: Data(base64Encoded: book["Icon"] as! String)!)!
                     let name = book["Title"] as! String
                     let info = (book["Title1"] as! String) + "\n" + (book["Title2"] as! String) + "\n" + (book["Title3"] as! String)
-                    let parsedBook = Book(image: image, name: name, info: info, ID: book["ID"] as! String)
+                    let parsedBook = Book(image: image, name: name, info: info, ID: book["ID"] as! String, imagesDirectory: book["Subdir"] as! String)
                     books.append(parsedBook)
                 }
                 return books
@@ -80,6 +81,27 @@ class TiktekAPI {
             }
         }
         return answers
+    }
+    // The function that downloads images doesn't use a custom UA or sends anything tiktek related in the request...
+    public func downloadImage(imageName: String, bookDir: String, bookID: String) -> UIImage {
+        var result: UIImage? = nil
+        let url = URL(string: host+"/il/tt-resources/solution-images/"+bookDir+"_"+bookID+"/"+imageName)
+        while result == nil {
+            let semaphore = DispatchSemaphore(value: 0)
+            let task = URLSession.shared.dataTask(with: url!) { data, response, error in
+                guard let data = data, error == nil else {
+                    print(error?.localizedDescription ?? "request failed... trying again!")
+                    sleep(2)
+                    semaphore.signal()
+                    return
+                }
+                result = UIImage(data: data)
+                semaphore.signal()
+            }
+            task.resume()
+            semaphore.wait()
+        }
+        return result!
     }
     // [String: [String: Any]?]?
     private func jsonPost(url: String, jsonBody: [String: Any]) -> [String: Any]? {

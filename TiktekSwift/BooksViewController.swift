@@ -44,6 +44,7 @@ class BooksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.BookInfo.text = self.displayedBooks![indexPath.row].info
         cell.BookCover.image = self.displayedBooks![indexPath.row].image
         cell.bookID = self.displayedBooks![indexPath.row].ID
+        cell.bookStruct = self.displayedBooks![indexPath.row]
         return cell
     }
     
@@ -72,8 +73,7 @@ class BooksViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let dest = segue.destination as! AnswersViewController
         let clickedCell = sender as! BookCell
-        dest.bookName = clickedCell.BookName.text
-        dest.bookID = clickedCell.bookID
+        dest.book = clickedCell.bookStruct
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string)) {

@@ -9,8 +9,7 @@ import UIKit
 class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
-    var bookID: String?
-    var bookName: String?
+    var book: Book?
     var page: String?
     var question: String?
     var answers: [Answer]?
@@ -23,8 +22,15 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.answerTitle.text = "Page \(answers![indexPath.row].page) question \(answers![indexPath.row].question)"
         cell.correctnessLabel.text = "\(answers![indexPath.row].correctness)%"
         cell.usernameLabel.text = answers![indexPath.row].creator
-        // TODO fetch image
-        
+        // Fetch the image in background
+        DispatchQueue.global(qos: .userInitiated).async { [self] in
+            let image = api.downloadImage(imageName: answers![indexPath.row].imageName, bookDir: book!.imagesDirectory, bookID: book!.ID)
+            DispatchQueue.main.async {
+                cell.imageLoadingIndicator.stopAnimating()
+                cell.imageView?.image = image
+                cell.imageView?.isHidden = false
+            }
+        }
         return cell
     }
     
@@ -33,7 +39,7 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
         let inputSemaphore = DispatchSemaphore(value: 0) // we need to wait for the user to enter a page number and question number
 
         tableView.isHidden = true
-        let alert = UIAlertController(title: bookName, message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: book!.name, message: "", preferredStyle: .alert)
         alert.addTextField() { (pageNumberField) in
             pageNumberField.placeholder = "Page number"
             pageNumberField.keyboardType = .numberPad
@@ -64,7 +70,7 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
         // data magic here
         DispatchQueue.global(qos: .userInitiated).async {
             inputSemaphore.wait()
-            self.answers = api.getAnswers(bookID: self.bookID!, page: self.page!, question: self.question!)
+            self.answers = api.getAnswers(bookID: self.book!.ID, page: self.page!, question: self.question!)
             DispatchQueue.main.async { [self] in
                 loadingIndicator.stopAnimating()
                 tableView.isHidden = false
