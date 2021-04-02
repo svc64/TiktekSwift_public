@@ -245,6 +245,9 @@
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gtfo" translatesAutoresizingMaskIntoConstraints="NO" id="OQh-2p-JHu">
                                                     <rect key="frame" x="0.0" y="40" width="428" height="182"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="182" id="iGD-ab-npc"/>
+                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>

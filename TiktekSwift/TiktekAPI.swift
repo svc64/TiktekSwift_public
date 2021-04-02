@@ -21,7 +21,7 @@ class TiktekAPI {
     let modelCode = "iPhone12,1"
     let systemVersionString = "14.4.0"
     let NO_CLIENT_ID = "iOS_NoClientID"
-    var clientID = "iOS_NoClientID"
+    var clientID: String
     var userAgent: String // a legit looking user agent
     var deviceInfo: String // cuz we need this
     let deviceIDSemaphore = DispatchSemaphore(value: 0)
@@ -29,6 +29,7 @@ class TiktekAPI {
     init() {
         deviceInfo = "\(modelCode) - ios \(systemVersionString)"
         userAgent = "Tiktek for iOS v200 on \(deviceInfo)"
+        clientID = NO_CLIENT_ID
     }
     func getBooks(subjectID: String) -> [Book]? {
         var books: [Book] = []
