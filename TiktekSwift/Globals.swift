@@ -7,4 +7,4 @@
 
 import Foundation
 
-var api: TiktekAPI? = nil
+var api = TiktekAPI()

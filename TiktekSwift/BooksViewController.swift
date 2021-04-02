@@ -30,11 +30,8 @@ class BooksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.isHidden = true
         view.addSubview(loadingIndicator)
         DispatchQueue.global(qos: .userInitiated).async {
-            if api == nil {
-                api = TiktekAPI()
-            }
             print("fetching shit for subject id \(String(describing: self.subjectID))")
-            self.books = api?.getBooks(subjectID: self.subjectID!)
+            self.books = api.getBooks(subjectID: self.subjectID!)
             DispatchQueue.main.async { [self] in
                 loadingIndicator.stopAnimating()
                 tableView.isHidden = false
