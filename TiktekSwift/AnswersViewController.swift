@@ -13,17 +13,25 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
     var bookName: String?
     var page: String?
     var question: String?
+    var answers: [Answer]?
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        answers!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AnswerCell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AnswerCell") as! AnswerCell
+        cell.answerTitle.text = "Page \(answers![indexPath.row].page) question \(answers![indexPath.row].question)"
+        cell.correctnessLabel.text = "\(answers![indexPath.row].correctness)%"
+        cell.usernameLabel.text = answers![indexPath.row].creator
+        // TODO fetch image
+        
         return cell
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let inputSemaphore = DispatchSemaphore(value: 0) // we need to wait for the user to enter a page number and question number
+
         tableView.isHidden = true
         let alert = UIAlertController(title: bookName, message: "", preferredStyle: .alert)
         alert.addTextField() { (pageNumberField) in
@@ -47,23 +55,24 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
             print("Question number: \(questionNumberField!.text!)")
             self.page = pageNumberField!.text!
             self.question = questionNumberField!.text!
+            inputSemaphore.signal()
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (_) in
             self.navigationController?.popViewController(animated: true)
         }))
         self.present(alert, animated: true, completion: nil)
-        
         // data magic here
         DispatchQueue.global(qos: .userInitiated).async {
-            
+            inputSemaphore.wait()
+            self.answers = api.getAnswers(bookID: self.bookID!, page: self.page!, question: self.question!)
             DispatchQueue.main.async { [self] in
-                
+                loadingIndicator.stopAnimating()
+                tableView.isHidden = false
+                tableView.delegate = self
+                tableView.dataSource = self
+                tableView.reloadData()
             }
         }
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.reloadData()
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string)) {

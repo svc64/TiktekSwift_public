@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		450CEC9E261784AD00C3F6E2 /* AnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450CEC9D261784AD00C3F6E2 /* AnswerCell.swift */; };
 		452B4C67261495E300FCC91A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452B4C66261495E300FCC91A /* AppDelegate.swift */; };
 		452B4C69261495E300FCC91A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452B4C68261495E300FCC91A /* SceneDelegate.swift */; };
 		452B4C6E261495E300FCC91A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 452B4C6C261495E300FCC91A /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		450CEC9D261784AD00C3F6E2 /* AnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCell.swift; sourceTree = "<group>"; };
 		452B4C63261495E300FCC91A /* TiktekSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TiktekSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		452B4C66261495E300FCC91A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		452B4C68261495E300FCC91A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				45C61E6C2615C7400024F654 /* TiktekAPI.swift */,
 				45C61E712615E4690024F654 /* Globals.swift */,
 				45C61E8626164B500024F654 /* AnswersViewController.swift */,
+				450CEC9D261784AD00C3F6E2 /* AnswerCell.swift */,
 			);
 			path = TiktekSwift;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				45C61E6D2615C7400024F654 /* TiktekAPI.swift in Sources */,
 				452B4CA82614A58400FCC91A /* SubjectCell.swift in Sources */,
 				452B4CA32614A19800FCC91A /* SubjectsTable.swift in Sources */,
+				450CEC9E261784AD00C3F6E2 /* AnswerCell.swift in Sources */,
 				452B4C67261495E300FCC91A /* AppDelegate.swift in Sources */,
 				45C61E8726164B500024F654 /* AnswersViewController.swift in Sources */,
 				452B4CC72615003100FCC91A /* BookCell.swift in Sources */,

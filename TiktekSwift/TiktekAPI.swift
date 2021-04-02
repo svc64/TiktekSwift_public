@@ -14,11 +14,19 @@ struct Book {
     let info: String
     let ID: String
 }
+struct Answer {
+    let imageName: String
+    let page: String
+    let question: String
+    let creator: String // username of whoever uploaded this
+    let correctness: String
+}
 class TiktekAPI {
     let PARAM_CLIENT_ID = "TT-Client_ID"
     let host = "https://tiktek.com"
     let clientIDRequest = "/il/services/Clients.asmx/GetClientID2"
     let bookListRequest = "/il/services/MobileSearch.asmx/GetMobileBooks2"
+    let answersListRequest = "/il/services/MobileSearch.asmx/GetSolsEssaysAndMedia"
     let modelCode = "iPhone12,1"
     let systemVersionString = "14.4.0"
     let NO_CLIENT_ID = "iOS_NoClientID"
@@ -51,6 +59,27 @@ class TiktekAPI {
             }
         }
         return nil
+    }
+    func getAnswers(bookID: String, page: String, question: String) -> [Answer] {
+        var answers: [Answer] = []
+        let answersRequest: [String: String] = [
+            "bookID" : bookID,
+            "page" : page,
+            "question" : question,
+            "sq" : "",
+            "ssq" : "",
+            "userID" : ""
+        ]
+        let answersResponse = jsonPost(url: host+answersListRequest, jsonBody: answersRequest)
+        if let resultData = answersResponse!["ResultData"] as? [String: Any]? {
+            if let answersArray = resultData!["Solutions"] as! [[String: Any]]? {
+                for answer in answersArray {
+                    let parsedAnswer = Answer(imageName: answer["Image"] as! String, page: String(answer["Page"] as! Int), question: String(answer["Question"] as! Int), creator: answer["UserName"] as! String, correctness: String(answer["Correct"] as! Int))
+                    answers.append(parsedAnswer)
+                }
+            }
+        }
+        return answers
     }
     // [String: [String: Any]?]?
     private func jsonPost(url: String, jsonBody: [String: Any]) -> [String: Any]? {

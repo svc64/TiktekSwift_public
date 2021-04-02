@@ -9,6 +9,9 @@ import UIKit
 
 class BooksViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
+        if books == nil {
+            return
+        }
         guard let text = searchController.searchBar.text else { return }
         if text == "" {
             displayedBooks = books
