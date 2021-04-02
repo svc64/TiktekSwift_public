@@ -11,6 +11,7 @@ class BookCell: UITableViewCell {
     @IBOutlet weak var BookCover: UIImageView!
     @IBOutlet weak var BookName: UILabel!
     @IBOutlet weak var BookInfo: UILabel!
+    var bookID: String?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

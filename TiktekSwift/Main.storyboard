@@ -163,9 +163,9 @@
                             <constraint firstItem="ww7-r0-2Xk" firstAttribute="trailing" secondItem="Rs5-bv-P0K" secondAttribute="trailing" id="774-V4-UKz"/>
                             <constraint firstItem="Ias-Kt-Kdp" firstAttribute="top" secondItem="Rs5-bv-P0K" secondAttribute="top" id="KvR-ek-y2x"/>
                             <constraint firstItem="Ias-Kt-Kdp" firstAttribute="bottom" secondItem="Rs5-bv-P0K" secondAttribute="bottom" id="Np8-NR-a5V"/>
-                            <constraint firstItem="ww7-r0-2Xk" firstAttribute="top" secondItem="Rs5-bv-P0K" secondAttribute="top" id="SZX-qL-LGn"/>
                             <constraint firstItem="Ias-Kt-Kdp" firstAttribute="trailing" secondItem="Rs5-bv-P0K" secondAttribute="trailing" id="UKO-BH-ykn"/>
                             <constraint firstItem="ww7-r0-2Xk" firstAttribute="leading" secondItem="Rs5-bv-P0K" secondAttribute="leading" id="gso-3c-COC"/>
+                            <constraint firstItem="ww7-r0-2Xk" firstAttribute="top" secondItem="XYL-FS-y8I" secondAttribute="top" constant="88" id="irj-oe-UTo"/>
                             <constraint firstItem="Ias-Kt-Kdp" firstAttribute="leading" secondItem="Rs5-bv-P0K" secondAttribute="leading" id="nR5-aK-jFp"/>
                             <constraint firstItem="ww7-r0-2Xk" firstAttribute="bottom" secondItem="Rs5-bv-P0K" secondAttribute="bottom" id="onz-Xc-X1x"/>
                         </constraints>
@@ -276,26 +276,18 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="WWg-Eb-sLC">
-                                <rect key="frame" x="0.0" y="88" width="428" height="755"/>
-                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9QO-ji-jwK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="3pg-0L-2kG" firstAttribute="top" secondItem="9QO-ji-jwK" secondAttribute="top" id="CC1-4i-U3v"/>
                             <constraint firstItem="3pg-0L-2kG" firstAttribute="leading" secondItem="9QO-ji-jwK" secondAttribute="leading" id="DWG-XI-WF2"/>
-                            <constraint firstItem="WWg-Eb-sLC" firstAttribute="trailing" secondItem="9QO-ji-jwK" secondAttribute="trailing" id="UCy-wt-wGE"/>
                             <constraint firstItem="3pg-0L-2kG" firstAttribute="bottom" secondItem="9QO-ji-jwK" secondAttribute="bottom" id="XQH-mU-q6H"/>
-                            <constraint firstItem="WWg-Eb-sLC" firstAttribute="leading" secondItem="9QO-ji-jwK" secondAttribute="leading" id="arY-WH-7Kq"/>
-                            <constraint firstItem="WWg-Eb-sLC" firstAttribute="top" secondItem="9QO-ji-jwK" secondAttribute="top" id="hZ5-BK-OTm"/>
-                            <constraint firstItem="WWg-Eb-sLC" firstAttribute="bottom" secondItem="9QO-ji-jwK" secondAttribute="bottom" id="uy0-w1-eve"/>
                             <constraint firstItem="3pg-0L-2kG" firstAttribute="trailing" secondItem="9QO-ji-jwK" secondAttribute="trailing" id="y5S-Yg-Zb8"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="JOa-Lp-YV6"/>
                     <connections>
-                        <outlet property="loadingIndicator" destination="WWg-Eb-sLC" id="Tcv-1f-p20"/>
                         <outlet property="tableView" destination="3pg-0L-2kG" id="LGR-Bp-GAp"/>
                     </connections>
                 </viewController>
@@ -328,7 +320,7 @@
         <image name="info.circle.fill" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

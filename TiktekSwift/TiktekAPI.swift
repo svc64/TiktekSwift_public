@@ -12,6 +12,7 @@ struct Book {
     let image: UIImage
     let name: String
     let info: String
+    let ID: String
 }
 class TiktekAPI {
     let PARAM_CLIENT_ID = "TT-Client_ID"
@@ -43,7 +44,7 @@ class TiktekAPI {
                     let image = UIImage(data: Data(base64Encoded: book["Icon"] as! String)!)!
                     let name = book["Title"] as! String
                     let info = (book["Title1"] as! String) + "\n" + (book["Title2"] as! String) + "\n" + (book["Title3"] as! String)
-                    let parsedBook = Book(image: image, name: name, info: info)
+                    let parsedBook = Book(image: image, name: name, info: info, ID: book["ID"] as! String)
                     books.append(parsedBook)
                 }
                 return books
