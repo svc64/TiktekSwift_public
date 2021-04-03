@@ -58,7 +58,7 @@ class BooksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         search.searchBar.placeholder = "Search for books"
         navigationItem.searchController = search
         DispatchQueue.global(qos: .userInitiated).async {
-            print("fetching shit for subject id \(String(describing: self.subjectID))")
+            print("fetching shit for subject id \(self.subjectID!)")
             self.books = api.getBooks(subjectID: self.subjectID!)
             self.displayedBooks = self.books
             DispatchQueue.main.async { [self] in
