@@ -54,7 +54,7 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
             let pageNumberField = alert?.textFields![0]
             let questionNumberField = alert?.textFields![1]
             if pageNumberField?.text == nil {
-                self.dismiss(animated: true, completion: nil)
+                self.navigationController?.popViewController(animated: true)
                 return
             }
             print("Page number: \(pageNumberField!.text!)")
