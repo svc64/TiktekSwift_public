@@ -27,8 +27,8 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
             let image = api.downloadImage(imageName: answers![indexPath.row].imageName, bookDir: book!.imagesDirectory, bookID: book!.ID)
             DispatchQueue.main.async {
                 cell.imageLoadingIndicator.stopAnimating()
-                cell.imageView?.image = image
-                cell.imageView?.isHidden = false
+                cell.answerImageView?.image = image
+                cell.answerImageView?.isHidden = false
             }
         }
         return cell

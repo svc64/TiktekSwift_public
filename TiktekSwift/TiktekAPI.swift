@@ -147,6 +147,10 @@ class TiktekAPI {
                 let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
                 if let responseJSON = responseJSON as? [String: [String: Any]?]? {
                     semaphore.signal()
+                    if responseJSON == nil {
+                        // rip
+                        return
+                    }
                     retval = responseJSON!["d"]!
                     return
                 }
