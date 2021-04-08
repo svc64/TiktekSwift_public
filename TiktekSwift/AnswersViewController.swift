@@ -7,27 +7,39 @@
 
 import UIKit
 class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
+    struct CellData {
+        var imageName: String
+        var answerTitle: String
+        var correctnessLabel: String
+        var usernameLabel: String
+        var image: UIImage?
+        var isWorking: Bool = false // is more data being currently fed into here? should we change anything in this struct right now?
+    }
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     var book: Book?
     var page: String?
     var question: String?
     var answers: [Answer]?
+    var cells: [CellData]? = []
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         answers!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AnswerCell") as! AnswerCell
-        cell.answerTitle.text = "Page \(answers![indexPath.row].page) question \(answers![indexPath.row].question)"
-        cell.correctnessLabel.text = "\(answers![indexPath.row].correctness)%"
-        cell.usernameLabel.text = answers![indexPath.row].creator
+        cell.answerTitle.text = cells![indexPath.row].answerTitle
+        cell.correctnessLabel.text = cells![indexPath.row].correctnessLabel
+        cell.usernameLabel.text = cells![indexPath.row].usernameLabel
         // Fetch the image in background
         DispatchQueue.global(qos: .userInitiated).async { [self] in
-            let image = api.downloadImage(imageName: answers![indexPath.row].imageName, bookDir: book!.imagesDirectory, bookID: book!.ID)
+            if cells![indexPath.row].image == nil && !cells![indexPath.row].isWorking {
+                cells![indexPath.row].isWorking = true
+                cells![indexPath.row].image = api.downloadImage(imageName: cells![indexPath.row].imageName, bookDir: book!.imagesDirectory, bookID: book!.ID)
+            }
             DispatchQueue.main.async {
                 cell.imageLoadingIndicator.stopAnimating()
-                cell.answerImageView?.image = image
+                cell.answerImageView?.image = cells![indexPath.row].image
                 cell.answerImageView?.isHidden = false
             }
         }
@@ -71,6 +83,16 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
         DispatchQueue.global(qos: .userInitiated).async {
             inputSemaphore.wait()
             self.answers = api.getAnswers(bookID: self.book!.ID, page: self.page!, question: self.question!)
+            
+            // load the data we already have into the cell struct
+            for answer in self.answers! {
+                self.cells!.append(CellData(
+                imageName: answer.imageName,
+                answerTitle: "Page \(answer.page) question \(answer.question)",
+                correctnessLabel: "\(answer.correctness)%",
+                usernameLabel: answer.creator, image: nil))
+            }
+            
             DispatchQueue.main.async { [self] in
                 loadingIndicator.stopAnimating()
                 tableView.isHidden = false
