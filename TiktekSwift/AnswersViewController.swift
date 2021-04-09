@@ -39,11 +39,6 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
                 while attempts < 5 {
                     cells![indexPath.row].image = api.downloadImage(imageName: cells![indexPath.row].imageName, bookDir: book!.imagesDirectory, bookID: book!.ID)
                     if cells![indexPath.row].image != nil {
-                        DispatchQueue.main.async {
-                            cell.imageLoadingIndicator.stopAnimating()
-                            cell.answerImageView?.image = cells![indexPath.row].image
-                            cell.answerImageView?.isHidden = false
-                        }
                         return
                     }
                     attempts += 1
@@ -55,6 +50,11 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
                     cell.answerImageView.contentMode = .center
                     cell.answerImageView?.isHidden = false
                 }
+            }
+            DispatchQueue.main.async {
+                cell.imageLoadingIndicator.stopAnimating()
+                cell.answerImageView?.image = cells![indexPath.row].image
+                cell.answerImageView?.isHidden = false
             }
         }
         return cell
