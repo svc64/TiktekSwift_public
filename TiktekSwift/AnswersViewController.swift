@@ -35,13 +35,21 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
         DispatchQueue.global(qos: .userInitiated).async { [self] in
             if cells![indexPath.row].image == nil && !cells![indexPath.row].isWorking {
                 cells![indexPath.row].isWorking = true
-                cells![indexPath.row].image = api.downloadImage(imageName: cells![indexPath.row].imageName, bookDir: book!.imagesDirectory, bookID: book!.ID)
+                var attempts = 0
+                while attempts < 5 {
+                    cells![indexPath.row].image = api.downloadImage(imageName: cells![indexPath.row].imageName, bookDir: book!.imagesDirectory, bookID: book!.ID)
+                    if cells![indexPath.row].image != nil {
+                        DispatchQueue.main.async {
+                            cell.imageLoadingIndicator.stopAnimating()
+                            cell.answerImageView?.image = cells![indexPath.row].image
+                            cell.answerImageView?.isHidden = false
+                        }
+                        return
+                    }
+                    attempts += 1
+                }
             }
-            DispatchQueue.main.async {
-                cell.imageLoadingIndicator.stopAnimating()
-                cell.answerImageView?.image = cells![indexPath.row].image
-                cell.answerImageView?.isHidden = false
-            }
+            
         }
         return cell
     }

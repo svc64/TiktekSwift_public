@@ -83,25 +83,23 @@ class TiktekAPI {
         return answers
     }
     // The function that downloads images doesn't use a custom UA or sends anything tiktek related in the request...
-    public func downloadImage(imageName: String, bookDir: String, bookID: String) -> UIImage {
+    // we gotta have a single shot... attempts shouldn't be handled here.
+    public func downloadImage(imageName: String, bookDir: String, bookID: String) -> UIImage? {
         var result: UIImage? = nil
         let url = URL(string: host+"/il/tt-resources/solution-images/"+bookDir+"_"+bookID+"/"+imageName)
-        while result == nil {
-            let semaphore = DispatchSemaphore(value: 0)
-            let task = URLSession.shared.dataTask(with: url!) { data, response, error in
-                guard let data = data, error == nil else {
-                    print(error?.localizedDescription ?? "request failed... trying again!")
-                    sleep(2)
-                    semaphore.signal()
-                    return
-                }
-                result = UIImage(data: data)
+        let semaphore = DispatchSemaphore(value: 0)
+        let task = URLSession.shared.dataTask(with: url!) { data, response, error in
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "request failed...")
                 semaphore.signal()
+                return
             }
-            task.resume()
-            semaphore.wait()
+            result = UIImage(data: data)
+            semaphore.signal()
         }
-        return result!
+        task.resume()
+        semaphore.wait()
+        return result
     }
     // [String: [String: Any]?]?
     private func jsonPost(url: String, jsonBody: [String: Any]) -> [String: Any]? {
