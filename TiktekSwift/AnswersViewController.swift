@@ -50,6 +50,7 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
                     cell.answerImageView.contentMode = .center
                     cell.answerImageView?.isHidden = false
                 }
+                return
             }
             DispatchQueue.main.async {
                 cell.imageLoadingIndicator.stopAnimating()
