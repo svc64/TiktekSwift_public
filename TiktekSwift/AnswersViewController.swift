@@ -48,6 +48,12 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
                     }
                     attempts += 1
                 }
+                // image download failed, display a failure icon
+                DispatchQueue.main.async {
+                    cell.imageLoadingIndicator.stopAnimating()
+                    cell.answerImageView?.image = UIImage(systemName: "xmark.octagon.fill")
+                    cell.answerImageView?.isHidden = false
+                }
             }
             
         }
