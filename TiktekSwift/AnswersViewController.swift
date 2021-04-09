@@ -52,10 +52,10 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
                 DispatchQueue.main.async {
                     cell.imageLoadingIndicator.stopAnimating()
                     cell.answerImageView?.image = UIImage(systemName: "xmark.octagon.fill")
+                    cell.answerImageView.contentMode = .center
                     cell.answerImageView?.isHidden = false
                 }
             }
-            
         }
         return cell
     }
@@ -104,7 +104,8 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
                 imageName: answer.imageName,
                 answerTitle: "Page \(answer.page) question \(answer.question)",
                 correctnessLabel: "\(answer.correctness)%",
-                usernameLabel: answer.creator, image: nil))
+                usernameLabel: answer.creator,
+                image: nil))
             }
             
             DispatchQueue.main.async { [self] in
