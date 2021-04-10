@@ -13,7 +13,6 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
         var correctnessLabel: String
         var usernameLabel: String
         var image: UIImage?
-        var isWorking: Bool = false // is more data being currently fed into here? should we change anything in this struct right now?
     }
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
@@ -31,32 +30,13 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.answerTitle.text = cells![indexPath.row].answerTitle
         cell.correctnessLabel.text = cells![indexPath.row].correctnessLabel
         cell.usernameLabel.text = cells![indexPath.row].usernameLabel
-        // Fetch the image in background
-        DispatchQueue.global(qos: .userInitiated).async { [self] in
-            if cells![indexPath.row].image == nil && !cells![indexPath.row].isWorking {
-                cells![indexPath.row].isWorking = true
-                var attempts = 0
-                while attempts < 5 {
-                    cells![indexPath.row].image = api.downloadImage(imageName: cells![indexPath.row].imageName, bookDir: book!.imagesDirectory, bookID: book!.ID)
-                    if cells![indexPath.row].image != nil {
-                        return
-                    }
-                    attempts += 1
-                }
-                // image download failed, display a failure icon
-                DispatchQueue.main.async {
-                    cell.imageLoadingIndicator.stopAnimating()
-                    cell.answerImageView?.image = UIImage(systemName: "xmark.octagon.fill")
-                    cell.answerImageView.contentMode = .center
-                    cell.answerImageView?.isHidden = false
-                }
-                return
-            }
-            DispatchQueue.main.async {
-                cell.imageLoadingIndicator.stopAnimating()
-                cell.answerImageView?.image = cells![indexPath.row].image
-                cell.answerImageView?.isHidden = false
-            }
+        if cells![indexPath.row].image == nil {
+            cell.answerImageView?.image = UIImage(systemName: "xmark.octagon.fill")
+            cell.answerImageView.contentMode = .center
+            cell.answerImageView?.isHidden = false
+        } else {
+            cell.answerImageView?.image = cells![indexPath.row].image
+            cell.answerImageView?.isHidden = false
         }
         return cell
     }
@@ -107,6 +87,15 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
                 correctnessLabel: "\(answer.correctness)%",
                 usernameLabel: answer.creator,
                 image: nil))
+            }
+            
+            // load images
+            for i in 0...self.cells!.count-1 {
+                var attempts = 0
+                while attempts < 5 {
+                    self.cells![i].image = api.downloadImage(imageName: self.cells![i].imageName, bookDir: self.book!.imagesDirectory, bookID: self.book!.ID)
+                    attempts += 1
+                }
             }
             
             DispatchQueue.main.async { [self] in
