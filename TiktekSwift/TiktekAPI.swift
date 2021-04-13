@@ -29,13 +29,18 @@ class TiktekAPI {
     let bookListRequest = "/il/services/MobileSearch.asmx/GetMobileBooks2"
     let answersListRequest = "/il/services/MobileSearch.asmx/GetSolsEssaysAndMedia"
     let modelCode = "iPhone12,1"
-    let systemVersionString = "14.4.0"
+    let systemVersionString = "14.5.0"
     let NO_CLIENT_ID = "iOS_NoClientID"
     var clientID: String
     var userAgent: String // a legit looking user agent
     var deviceInfo: String // cuz we need this
     let deviceIDSemaphore = DispatchSemaphore(value: 0)
+    let contentType = "application/json"
     var requestingDeviceID = false
+    // the tiktek image downloader is webkit, so let's pretend to be webkit and hopefully avoid a ban
+    let WKImageContentType = "image/webp,image/png,image/svg+xml,image/*;q=0.8,video/*;q=0.8,*/*;q=0.5"
+    let WKUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
+    let settings = UserDefaults.standard
     init() {
         deviceInfo = "\(modelCode) - ios \(systemVersionString)"
         userAgent = "Tiktek for iOS v200 on \(deviceInfo)"
@@ -87,8 +92,11 @@ class TiktekAPI {
     public func downloadImage(imageName: String, bookDir: String, bookID: String) -> UIImage? {
         var result: UIImage? = nil
         let url = URL(string: host+"/il/tt-resources/solution-images/"+bookDir+"_"+bookID+"/"+imageName)
+        var request = URLRequest(url: url!)
+        request.setValue(WKUserAgent, forHTTPHeaderField: "User-Agent")
+        request.setValue(WKImageContentType, forHTTPHeaderField: "Accept")
         let semaphore = DispatchSemaphore(value: 0)
-        let task = URLSession.shared.dataTask(with: url!) { data, response, error in
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
                 print(error?.localizedDescription ?? "request failed...")
                 semaphore.signal()
@@ -113,11 +121,17 @@ class TiktekAPI {
                 /* The tiktek app fetches a unique device ID on first launch, then it sends that device ID in all requests.
                     This can be abused to track users (and probably used for this) so we'll fetch a new device ID every launch to look legit and prevent tracking.
                  */
-                self.requestingDeviceID = true
-                let idRequest: [String: String] = ["deviceInfo" : deviceInfo]
-                let idResponse = jsonPost(url: deviceIDRequestURL, jsonBody: idRequest)
-                clientID = idResponse!["ResultData"] as! String
-                print("Got client ID! \(clientID)")
+                let CID = settings.string(forKey: "CID")
+                if CID == nil {
+                    self.requestingDeviceID = true
+                    let idRequest: [String: String] = ["deviceInfo" : deviceInfo]
+                    let idResponse = jsonPost(url: deviceIDRequestURL, jsonBody: idRequest)
+                    clientID = idResponse!["ResultData"] as! String
+                    print("Got client ID! \(clientID)")
+                    settings.setValue(clientID, forKey: "CID")
+                } else {
+                    clientID = CID!
+                }
                 requestingDeviceID = false
                 deviceIDSemaphore.signal()
             }
@@ -129,7 +143,8 @@ class TiktekAPI {
             var request = URLRequest(url: url)
             request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
             request.setValue(clientID, forHTTPHeaderField: "TT-Client_ID")
-            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.setValue(contentType, forHTTPHeaderField: "Content-Type")
+            request.setValue(contentType, forHTTPHeaderField: "Accept")
             request.httpMethod = "POST"
             
             // insert json data to the request
