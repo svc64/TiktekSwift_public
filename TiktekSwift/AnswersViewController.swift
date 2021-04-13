@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import QuickLook
 class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     struct CellData {
         var imageName: String
@@ -30,6 +31,7 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.answerTitle.text = cells![indexPath.row].answerTitle
         cell.correctnessLabel.text = cells![indexPath.row].correctnessLabel
         cell.usernameLabel.text = cells![indexPath.row].usernameLabel
+        cell.index = indexPath.row
         if cells![indexPath.row].image == nil {
             cell.answerImageView?.image = UIImage(systemName: "xmark.octagon.fill")
             cell.answerImageView.contentMode = .center
@@ -38,7 +40,19 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
             cell.answerImageView?.image = cells![indexPath.row].image
             cell.answerImageView?.isHidden = false
         }
+        // set up QuickLook
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        cell.addGestureRecognizer(tapGesture)
         return cell
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        print("quicklooking...")
+        let quickLookViewController = QLPreviewController()
+        quickLookViewController.dataSource = self
+        quickLookViewController.currentPreviewItemIndex = (sender!.view as! AnswerCell).index!
+        present(quickLookViewController, animated: true)
+
     }
     
     override func viewDidLoad() {
@@ -113,4 +127,23 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         return false
     }
+}
+extension AnswersViewController: QLPreviewControllerDataSource {
+  func numberOfPreviewItems(in controller: QLPreviewController) -> Int {
+    self.cells!.count
+  }
+
+  func previewController(
+    _ controller: QLPreviewController,
+    previewItemAt index: Int
+  ) -> QLPreviewItem {
+    let tempImage = NSURL(fileURLWithPath: "\(NSTemporaryDirectory())/\(self.cells![index].imageName)")
+    do {
+        try self.cells![index].image?.pngData()?.write(to: tempImage as URL)
+    } catch {
+        print("quicklook failed!")
+        abort()
+    }
+    return tempImage as QLPreviewItem
+  }
 }
