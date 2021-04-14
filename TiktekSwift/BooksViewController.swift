@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BooksViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate, UISearchResultsUpdating {
+class BooksViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if books == nil {
             return
@@ -74,11 +74,5 @@ class BooksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let dest = segue.destination as! AnswersViewController
         let clickedCell = sender as! BookCell
         dest.book = clickedCell.bookStruct
-    }
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: string)) {
-            return true
-        }
-        return false
     }
 }
