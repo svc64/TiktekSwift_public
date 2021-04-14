@@ -105,11 +105,7 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             // load images
             for i in 0...self.cells!.count-1 {
-                var attempts = 0
-                while attempts < 5 {
-                    self.cells![i].image = api.downloadImage(imageName: self.cells![i].imageName, bookDir: self.book!.imagesDirectory, bookID: self.book!.ID)
-                    attempts += 1
-                }
+                self.cells![i].image = api.downloadImage(imageName: self.cells![i].imageName, bookDir: self.book!.imagesDirectory, bookID: self.book!.ID)
             }
             
             DispatchQueue.main.async { [self] in
