@@ -48,6 +48,24 @@ class BooksViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return cell
     }
     
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+              let saveAction = UIAction(
+                title: "Save Book",
+                image: UIImage(systemName: "bookmark.fill")) { _ in
+                do {
+                    try bookshelf.saveBook(book: self.displayedBooks![indexPath.row])
+                } catch {
+                    let alert = UIAlertController(title: "Error", message: "Failed to save book!", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                }
+              }
+              return UIMenu(title: "", image: nil, children: [saveAction])
+        }
+        return configuration
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.isHidden = true
@@ -70,6 +88,7 @@ class BooksViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
         }
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let dest = segue.destination as! AnswersViewController
         let clickedCell = sender as! BookCell

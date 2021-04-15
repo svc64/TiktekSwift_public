@@ -52,7 +52,6 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
         quickLookViewController.dataSource = self
         quickLookViewController.currentPreviewItemIndex = (sender!.view as! AnswerCell).index!
         present(quickLookViewController, animated: true)
-
     }
     
     override func viewDidLoad() {
