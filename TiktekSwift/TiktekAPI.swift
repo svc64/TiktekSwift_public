@@ -40,7 +40,6 @@ class TiktekAPI {
     // the tiktek image downloader is webkit, so let's pretend to be webkit and hopefully avoid a ban
     let WKImageContentType = "image/webp,image/png,image/svg+xml,image/*;q=0.8,video/*;q=0.8,*/*;q=0.5"
     let WKUserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 14_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
-    let settings = UserDefaults.standard
     init() {
         deviceInfo = "\(modelCode) - ios \(systemVersionString)"
         userAgent = "Tiktek for iOS v200 on \(deviceInfo)"

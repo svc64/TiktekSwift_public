@@ -8,3 +8,5 @@
 import Foundation
 
 var api = TiktekAPI()
+let settings = UserDefaults.standard
+let bookshelf = BookSaver()
