@@ -13,8 +13,8 @@ struct SavedBook {
     let ID: String
     let imagesDirectory: String // the directory in tiktek's servers where the solution images are saved for this book
 }
-var savedBooks: [SavedBook] = []
 class BookSaver {
+    public var savedBooks: [SavedBook] = []
     init() {
         let savedBooksValue = settings.array(forKey: savedBooksKey)
         if savedBooksValue != nil {
@@ -25,8 +25,5 @@ class BookSaver {
         let savedBook = SavedBook(image: book.image, name: book.name, ID: book.ID, imagesDirectory: book.imagesDirectory)
         savedBooks.append(savedBook)
         settings.setValue(savedBooks, forKey: savedBooksKey)
-    }
-    func getSavedBooks() -> [SavedBook] {
-        return savedBooks
     }
 }
