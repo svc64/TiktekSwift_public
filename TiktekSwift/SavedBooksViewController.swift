@@ -23,6 +23,31 @@ class SavedBooksViewController: UIViewController, UICollectionViewDelegate, UICo
         cell.bookNameLabel.text = bookshelf.savedBooks[indexPath.item].name
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
+              let removeAction = UIAction(
+                title: "Remove Book",
+                image: UIImage(systemName: "minus")) { [self] _ in
+                removeBook(savedBook: bookshelf.savedBooks[indexPath.item])
+              }
+              return UIMenu(title: "", image: nil, children: [removeAction])
+        }
+        return configuration
+    }
+    func removeBook(savedBook: SavedBook) {
+        do {
+            try bookshelf.removeBook(book: savedBook)
+        } catch Errors.bookRemoveFailed {
+            let alert = UIAlertController(title: "Error", message: "Book removal failed!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        } catch {
+            let alert = UIAlertController(title: "Error", message: "Unknown error while removing book!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
+        reload()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         if bookshelf.savedBooks.count == 0 {
@@ -50,6 +75,16 @@ class SavedBooksViewController: UIViewController, UICollectionViewDelegate, UICo
         nopeLabel.frame = frame
     }
     override func viewWillAppear(_ animated: Bool) {
+        reload()
+    }
+    func reload() {
+        if bookshelf.savedBooks.count == 0 {
+            nopeLabel.isHidden = false
+            collectionView.isHidden = true
+        } else {
+            nopeLabel.isHidden = true
+            collectionView.isHidden = false
+        }
         collectionView.reloadData()
     }
 }

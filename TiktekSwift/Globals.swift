@@ -12,4 +12,5 @@ let settings = UserDefaults.standard
 let bookshelf = BookSaver()
 enum Errors: Error {
     case bookSaveFailed
+    case bookRemoveFailed
 }

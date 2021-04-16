@@ -39,10 +39,31 @@ class BookSaver {
         }
         savedBooks.append(savedBook)
         do {
+            try self.sync()
+        } catch Errors.bookSaveFailed {
+            throw Errors.bookSaveFailed
+        }
+    }
+    private func sync() throws {
+        do {
             let encodedData = try PropertyListEncoder().encode(savedBooks)
             settings.set(encodedData, forKey: savedBooksKey)
         } catch {
             throw Errors.bookSaveFailed
+        }
+    }
+    func removeBook(book: SavedBook) throws {
+        var newBookArray: [SavedBook] = []
+        for savedBook in savedBooks {
+            if savedBook.ID != book.ID {
+                newBookArray.append(savedBook)
+            }
+        }
+        savedBooks = newBookArray
+        do {
+            try self.sync()
+        } catch Errors.bookSaveFailed {
+            throw Errors.bookRemoveFailed
         }
     }
 }

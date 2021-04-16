@@ -327,7 +327,7 @@
             </objects>
             <point key="canvasLocation" x="236" y="712"/>
         </scene>
-        <!--Saved Books View Controller-->
+        <!--Books-->
         <scene sceneID="SXI-go-D0v">
             <objects>
                 <viewController id="qFr-Ot-pTo" customClass="SavedBooksViewController" customModule="TiktekSwift" customModuleProvider="target" sceneMemberID="viewController">
@@ -397,7 +397,7 @@
                         <viewLayoutGuide key="safeArea" id="La5-1H-jg6"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="9Y9-ef-j97"/>
+                    <navigationItem key="navigationItem" title="Books" id="9Y9-ef-j97"/>
                     <connections>
                         <outlet property="collectionView" destination="RKP-xx-FKR" id="UbZ-mI-3xV"/>
                         <outlet property="nopeLabel" destination="ieI-9u-tcR" id="O5b-j1-D9q"/>
