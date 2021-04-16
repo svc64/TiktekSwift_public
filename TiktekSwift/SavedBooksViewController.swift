@@ -21,6 +21,7 @@ class SavedBooksViewController: UIViewController, UICollectionViewDelegate, UICo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SavedBookCell", for: indexPath) as! SavedBookCell
         cell.imageView.image = UIImage(data: bookshelf.savedBooks[indexPath.item].image)
         cell.bookNameLabel.text = bookshelf.savedBooks[indexPath.item].name
+        cell.index = indexPath.item
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
@@ -86,5 +87,17 @@ class SavedBooksViewController: UIViewController, UICollectionViewDelegate, UICo
             collectionView.isHidden = false
         }
         collectionView.reloadData()
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let dest = segue.destination as! AnswersViewController
+        let cell = sender as! SavedBookCell
+        let i = cell.index!
+        dest.book = Book(
+            image: UIImage(data: bookshelf.savedBooks[i].image)!,
+            name: bookshelf.savedBooks[i].name,
+            info: "",
+            ID: bookshelf.savedBooks[i].ID,
+            imagesDirectory: bookshelf.savedBooks[i].imagesDirectory
+        )
     }
 }

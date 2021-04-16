@@ -9,4 +9,5 @@ import UIKit
 class SavedBookCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var bookNameLabel: UILabel!
+    var index: Int?
 }
