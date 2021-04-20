@@ -17,6 +17,7 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var noAnswersLabel: UILabel!
     var book: Book?
     var page: String?
     var question: String?
@@ -92,27 +93,34 @@ class AnswersViewController: UIViewController, UITableViewDelegate, UITableViewD
             inputSemaphore.wait()
             self.answers = api.getAnswers(bookID: self.book!.ID, page: self.page!, question: self.question!)
             
-            // load the data we already have into the cell struct
-            for answer in self.answers! {
-                self.cells!.append(CellData(
-                imageName: answer.imageName,
-                answerTitle: "Page \(answer.page) question \(answer.question)",
-                correctnessLabel: "\(answer.correctness)%",
-                usernameLabel: answer.creator,
-                image: nil))
-            }
-            
-            // load images
-            for i in 0...self.cells!.count-1 {
-                self.cells![i].image = api.downloadImage(imageName: self.cells![i].imageName, bookDir: self.book!.imagesDirectory, bookID: self.book!.ID)
-            }
-            
-            DispatchQueue.main.async { [self] in
-                loadingIndicator.stopAnimating()
-                tableView.isHidden = false
-                tableView.delegate = self
-                tableView.dataSource = self
-                tableView.reloadData()
+            if self.answers!.isEmpty {
+                DispatchQueue.main.async {
+                    self.loadingIndicator.stopAnimating()
+                    self.noAnswersLabel.isHidden = false
+                }
+            } else {
+                // load the data we already have into the cell struct
+                for answer in self.answers! {
+                    self.cells!.append(CellData(
+                    imageName: answer.imageName,
+                    answerTitle: "Page \(answer.page) question \(answer.question)",
+                    correctnessLabel: "\(answer.correctness)%",
+                    usernameLabel: answer.creator,
+                    image: nil))
+                }
+                
+                // load images
+                for i in 0...self.cells!.count-1 {
+                    self.cells![i].image = api.downloadImage(imageName: self.cells![i].imageName, bookDir: self.book!.imagesDirectory, bookID: self.book!.ID)
+                }
+                
+                DispatchQueue.main.async { [self] in
+                    loadingIndicator.stopAnimating()
+                    tableView.isHidden = false
+                    tableView.delegate = self
+                    tableView.dataSource = self
+                    tableView.reloadData()
+                }
             }
         }
     }

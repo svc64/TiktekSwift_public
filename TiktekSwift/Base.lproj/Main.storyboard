@@ -174,7 +174,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3pg-0L-2kG">
-                                <rect key="frame" x="0.0" y="39" width="800" height="511"/>
+                                <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AnswerCell" rowHeight="282" id="Gya-ht-gsL" customClass="AnswerCell" customModule="TiktekSwift" customModuleProvider="target">
@@ -267,17 +267,27 @@
                                 </prototypes>
                             </tableView>
                             <activityIndicatorView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="WWg-Eb-sLC">
-                                <rect key="frame" x="0.0" y="39" width="800" height="511"/>
+                                <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
                             </activityIndicatorView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No answers :(" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bi8-VG-PN3">
+                                <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9QO-ji-jwK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Bi8-VG-PN3" firstAttribute="leading" secondItem="9QO-ji-jwK" secondAttribute="leading" id="7EL-4n-GRx"/>
                             <constraint firstItem="3pg-0L-2kG" firstAttribute="top" secondItem="9QO-ji-jwK" secondAttribute="top" id="CC1-4i-U3v"/>
                             <constraint firstItem="3pg-0L-2kG" firstAttribute="leading" secondItem="9QO-ji-jwK" secondAttribute="leading" id="DWG-XI-WF2"/>
+                            <constraint firstItem="Bi8-VG-PN3" firstAttribute="trailing" secondItem="9QO-ji-jwK" secondAttribute="trailing" id="NGb-nW-gTQ"/>
                             <constraint firstItem="WWg-Eb-sLC" firstAttribute="trailing" secondItem="9QO-ji-jwK" secondAttribute="trailing" id="UCy-wt-wGE"/>
                             <constraint firstItem="3pg-0L-2kG" firstAttribute="bottom" secondItem="9QO-ji-jwK" secondAttribute="bottom" id="XQH-mU-q6H"/>
                             <constraint firstItem="WWg-Eb-sLC" firstAttribute="leading" secondItem="9QO-ji-jwK" secondAttribute="leading" id="arY-WH-7Kq"/>
+                            <constraint firstItem="Bi8-VG-PN3" firstAttribute="bottom" secondItem="9QO-ji-jwK" secondAttribute="bottom" id="bxf-6M-uwu"/>
+                            <constraint firstItem="Bi8-VG-PN3" firstAttribute="top" secondItem="9QO-ji-jwK" secondAttribute="top" id="bzM-Uy-imd"/>
                             <constraint firstItem="WWg-Eb-sLC" firstAttribute="top" secondItem="9QO-ji-jwK" secondAttribute="top" id="hZ5-BK-OTm"/>
                             <constraint firstItem="WWg-Eb-sLC" firstAttribute="bottom" secondItem="9QO-ji-jwK" secondAttribute="bottom" id="uy0-w1-eve"/>
                             <constraint firstItem="3pg-0L-2kG" firstAttribute="trailing" secondItem="9QO-ji-jwK" secondAttribute="trailing" id="y5S-Yg-Zb8"/>
@@ -286,6 +296,7 @@
                     <navigationItem key="navigationItem" id="JOa-Lp-YV6"/>
                     <connections>
                         <outlet property="loadingIndicator" destination="WWg-Eb-sLC" id="Tcv-1f-p20"/>
+                        <outlet property="noAnswersLabel" destination="Bi8-VG-PN3" id="U8e-c3-WTv"/>
                         <outlet property="tableView" destination="3pg-0L-2kG" id="LGR-Bp-GAp"/>
                     </connections>
                 </viewController>
@@ -410,7 +421,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="hOn-HF-R7q"/>
+        <segue reference="QL0-4Z-61T"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="NoBookCover" width="60" height="86"/>
